@@ -11,7 +11,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "incremental": true,
     "declaration": true
-  }
+  },
+  "include": ["src/**/*"],
 }
