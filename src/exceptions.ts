@@ -52,3 +52,14 @@ export class InvalidFontStyleStringException extends TerminalFontExceptionBase {
     );
   }
 }
+
+export class InvalidHexColorCodeException extends TerminalFontExceptionBase {
+  constructor(hexCode: string) {
+    super(
+      'InvalidHexColorCodeException',
+      `Invalid hex color code: ${hexCode}. ` +
+        'A valid hex color code should be any string matches the following regular expressions: ' +
+        '^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$'
+    );
+  }
+}
