@@ -57,16 +57,15 @@ export class Font implements IFont {
   }
 
   private getColorType(color: string | RgbColor) {
-    if (typeof color === 'string') {
-      return this.getFontSettingsStringType(color) === 'basic'
+    return typeof color === 'string'
+      ? this.getFontSettingsStringType(color) === 'basic'
         ? 'basic'
-        : 'invalid-string';
-    } else {
-      const valid = (x: number) => x >= 0 && x <= 255 && x % 1 === 0;
-      return valid(color.blue) && valid(color.green) && valid(color.red)
-        ? 'rgb'
-        : 'invalid-rgb';
-    }
+        : 'invalid-string'
+      : [color.blue, color.green, color.red]
+          .map((x: number) => x >= 0 && x <= 255 && x % 1 === 0)
+          .every((val) => val)
+      ? 'rgb'
+      : 'invalid-rgb';
   }
 
   private updateStyleViaStyleString(style: string) {
@@ -111,29 +110,30 @@ export class Font implements IFont {
   private updateStyle(
     style: FontStyle | FontStyle[] | Partial<Record<FontStyle, boolean>>
   ) {
-    if (typeof style === 'string') this.updateStyleViaStyleString(style);
-    else if (style instanceof Array) {
-      for (const subStyle of style) this.updateStyleViaStyleString(subStyle);
-    } else {
-      for (const substyle of FONT_STYLES)
-        style[substyle] === true && this.updateStyleViaStyleString(substyle);
-    }
+    typeof style === 'string'
+      ? this.updateStyleViaStyleString(style)
+      : style instanceof Array
+      ? style.forEach((subStyle) => this.updateStyleViaStyleString(subStyle))
+      : FONT_STYLES.forEach(
+          (subStyle) =>
+            style[subStyle] === true && this.updateStyleViaStyleString(subStyle)
+        );
   }
 
   private setSingly(settings: FontSettingsElement) {
-    if (typeof settings === 'string') {
-      this.updateViaFontSettingsString(settings);
-    } else {
-      settings.color && this.updateColor('color', settings.color);
-      settings.backgroundColor &&
-        this.updateColor('backgroundColor', settings.backgroundColor);
-      settings.fontStyle && this.updateStyle(settings.fontStyle);
+    typeof settings === 'string'
+      ? this.updateViaFontSettingsString(settings)
+      : (() => {
+          settings.color && this.updateColor('color', settings.color);
+          settings.backgroundColor &&
+            this.updateColor('backgroundColor', settings.backgroundColor);
+          settings.fontStyle && this.updateStyle(settings.fontStyle);
 
-      this.fontSettings.options = {
-        ...this.fontSettings,
-        ...settings.options,
-      };
-    }
+          this.fontSettings.options = {
+            ...this.fontSettings,
+            ...settings.options,
+          };
+        })();
   }
 
   private getCsisForStyle() {
