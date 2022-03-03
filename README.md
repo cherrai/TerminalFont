@@ -49,7 +49,8 @@ console.log(
 );
 ```
 
-The result is like:
+The result is:
+
 ![Screenshots](./screenshots/demo.png)
 
 ### Colors
@@ -89,7 +90,7 @@ Recently, Terminal.JS supports the following pre-defined colors:
 - cyan
 - white
 
-If you want to specify a color outside the pre-defined colors, use the RGB or hex color code form instead. Moreover, we are considering to provide more pre-defined colors in the future, just like what CSS acts.
+If you want to specify a color beyond the pre-defined colors, use the RGB or hex color code form instead. Moreover, more pre-defined colors will be supported in the future, just like what CSS acts.
 
 ### Styles
 
@@ -97,7 +98,7 @@ To set the styles of the text, use one of the following forms:
 
 ```javascript
 font().bold().italic().apply('Italic bold text');
-font
+font()
   .set({
     fontStyle: ['faint', 'underline', 'strike'],
   })
@@ -158,7 +159,7 @@ Creates a new [`Font`](#type-font) object. This is the alias for calling `new Fo
 font.rgb(red: number, green: number, blue: number): RgbObject;
 ```
 
-Returns a `RgbObject` with the given parameters defining the RGB values. Please use this with `Font.prototype.set`.
+Returns a `RgbObject` with the given parameters defining the RGB values. Please use this with [`Font.prototype.set`](#fontprototypeset).
 
 #### `font.hexColor`
 
@@ -168,7 +169,7 @@ Returns a `RgbObject` with the given parameters defining the RGB values. Please 
 font.hexColor(hexCode: string): RgbObject;
 ```
 
-Returns a `RgbObject` with the given hex code, similarily to `font.rgb`.
+Returns a `RgbObject` with the given hex code, similarily to [`font.rgb`](#fontrgb).
 
 ### Class: `Font`
 
@@ -186,7 +187,7 @@ Configure the font settings. The arguments can be passed via various ways:
 
 **Via string**
 
-Samples:
+Sample:
 
 ```javascript
 font().set('red', 'italic', 'strike');
@@ -196,7 +197,7 @@ font().set('red', 'italic', 'strike');
 
 In this way, you need to pass a object with the type `FontSettingsObject`.
 
-Samples:
+Sample:
 
 ```javascript
 font().set({
@@ -209,7 +210,7 @@ font().set({
 });
 ```
 
-See Options for supported options list.
+See [Options](#Options) for supported options list.
 
 #### `Font.prototype.apply()`
 
@@ -237,8 +238,7 @@ Supported options include:
 
 #### `reset`
 
-_Type: `boolean`_
-_Defualt: `true`_
+_Type: `boolean`_ _Defualt: `true`_
 
 This configures whether to reset the colors at the ending of the string. Set this option to `false` will allow you to use TerminalFont.JS in another way:
 
@@ -250,7 +250,7 @@ const fontSetter = () =>
     },
   });
 console.log(
-  'Is %snested %sstyles %sawesome %sor %snot?',
+  'Are %snested %sstyles %sawesome %sor %snot?',
   fontSetter().red().apply(''),
   fontSetter().bold().apply(''),
   fontSetter().bgCyan().apply(''),
@@ -259,7 +259,14 @@ console.log(
 );
 ```
 
-**NOTICE**: This is not a recommended way to use Terminal.JS which may lead to an unexpected result. We will provide more elegant ways to use nested styles in the future.
+**NOTICE**: This is not a recommended way to use TerminalFont.JS, as it may lead to an unexpected result. We will provide more elegant ways to use nested styles in the future.
+
+## To-do List
+
+- :rabbit: Fallback strategy if terminal doesn't support true color
+- :rabbit: More pre-defined color
+- :rabbit: Gradient color support
+- :rabbit: Render HTML template
 
 ## License
 
