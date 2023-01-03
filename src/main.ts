@@ -300,10 +300,14 @@ font.hexColor = (hexCode: string) => {
     ? (() => {
         throw new InvalidHexColorCodeException(hexCode);
       })()
-    : font.rgb(
+    : hexCode.length===7 ? font.rgb(
         parseInt('0x' + hexCode.slice(1, 3)),
         parseInt('0x' + hexCode.slice(3, 5)),
         parseInt('0x' + hexCode.slice(5, 7))
+      ) : font.rgb(
+        parseInt('0x' + hexCode[1]+hexCode[1]),
+        parseInt('0x' + hexCode[2]+hexCode[2]),
+        parseInt('0x'+ hexCode[3]+hexCode[3])
       );
 };
 

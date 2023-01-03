@@ -2,7 +2,9 @@ import { font } from '../src/index';
 
 console.log(font().green().apply('Green text'));
 console.log(font().bold().red().bgCyan().italic().apply('Complex styles!'));
-console.log(font().set('bold', 'italic', 'magenta').apply('Yet another way to use'));
+console.log(
+  font().set('bold', 'italic', 'magenta').apply('Yet another way to use')
+);
 console.log(
   font()
     .set({
@@ -25,5 +27,5 @@ console.log(
   fontSetter().bold().apply(''),
   fontSetter().bgCyan().apply(''),
   fontSetter().strike().apply(''),
-  fontSetter().underline().apply(''),
+  fontSetter().underline().apply('')
 );
