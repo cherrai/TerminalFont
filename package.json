@@ -1,7 +1,7 @@
 {
   "name": "terminal-font",
   "version": "0.9.2",
-  "author": "Yuki",
+  "author": "cherrai",
   "main": "./dist/index.js",
   "license": "LGPL-2.1-only",
   "scripts": {
@@ -15,10 +15,10 @@
     "ts-node": "^10.6.0",
     "typescript": "^4.6.2"
   },
-  "repository": "github:MetahorizonLab/TerminalFont",
+  "repository": "github:cherrai/TerminalFont",
   "description": "Use color, font styles and more in your Node.JS console. RGB color is supported!",
   "bugs": {
-    "url": "https://github.com/MetahorizonLab/TerminalFont/issues"
+    "url": "https://github.com/cherrai/TerminalFont/issues"
   },
-  "homepage": "https://github.com/MetahorizonLab/TerminalFont"
+  "homepage": "https://github.com/cherrai/TerminalFont"
 }
